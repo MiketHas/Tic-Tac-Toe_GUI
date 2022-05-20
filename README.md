@@ -6,7 +6,7 @@ Optional background sounds and speeding up the "Droid Battle Mode"! :) I'll cont
 
 ## Demo
 
-![java_JhZAEyuVWY](https://user-images.githubusercontent.com/97113363/169521439-9f14fe5d-c8e5-4417-b0f7-02dfea34d0e8.gif)
+![java_JhZAEyuVWY](https://user-images.githubusercontent.com/97113363/169521510-3f543e69-5e08-4c03-9018-e993cb31a270.gif)
 
 
 ## Run Locally
