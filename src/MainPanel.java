@@ -13,8 +13,7 @@ public class MainPanel extends JPanel implements ActionListener {
     static int player1Score = 0, player2Score = 0;
 
     static JTextPane textPane;
-    static JButton startButton;
-    static JButton gameModeButton, speedButton;
+    static RegularButton startButton, gameModeButton, speedButton;
     static JLabel scoreLabel, messageLabel;
     JLabel k2soLabel;
     static JLabel r5Label;
@@ -69,38 +68,14 @@ public class MainPanel extends JPanel implements ActionListener {
         aiWar.setVisible(false);
         aiWar.setOpaque(false);
 
-        startButton = new JButton();
-        startButton.setText("ENGAGE");
-        startButton.setFont(new Font("Consolas", Font.PLAIN, 16));
-        startButton.setForeground(Color.WHITE);
-        startButton.setBounds(450, 550, 100, 30);
+        startButton = new RegularButton("ENGAGE", 450, 550, 100, 30, true);
         startButton.addActionListener(this);
-        startButton.setFocusPainted(false);
-        startButton.setContentAreaFilled(false);
-        startButton.setBorderPainted(true);
-        startButton.setVisible(true);
 
-        gameModeButton = new JButton();
-        gameModeButton.setText("AI Battle");
-        gameModeButton.setFont(new Font("Consolas", Font.PLAIN, 16));
-        gameModeButton.setForeground(Color.WHITE);
-        gameModeButton.setBounds(20, 590, 140, 30);
+        gameModeButton = new RegularButton("AI Battle", 20, 590, 140, 30, true);
         gameModeButton.addActionListener(this);
-        gameModeButton.setFocusPainted(false);
-        gameModeButton.setContentAreaFilled(false);
-        gameModeButton.setBorderPainted(true);
-        gameModeButton.setVisible(true);
 
-        speedButton = new JButton();
-        speedButton.setText("Speed up!");
-        speedButton.setFont(new Font("Consolas", Font.PLAIN, 16));
-        speedButton.setForeground(Color.WHITE);
-        speedButton.setBounds(560, 550, 140, 30);
+        speedButton = new RegularButton("Speed up!", 560, 550, 140, 30, false);
         speedButton.addActionListener(this);
-        speedButton.setFocusPainted(false);
-        speedButton.setContentAreaFilled(false);
-        speedButton.setBorderPainted(true);
-        speedButton.setVisible(false);
 
         scoreLabel = new JLabel();
         scoreLabel.setText("Player " + player1Score + ":" + player2Score + " K2-SO");
@@ -150,7 +125,6 @@ public class MainPanel extends JPanel implements ActionListener {
                 startButton.setText("ENGAGE");
                 singlePlayerPanel.setVisible(false);
                 aiWar.setVisible(true);
-                speedButton.setVisible(true);
                 regularMode = false;
             } else if (source == startButton) {
                 singlePlayerPanel.setVisible(true);
@@ -172,6 +146,7 @@ public class MainPanel extends JPanel implements ActionListener {
                 regularMode = true;
             } else if (source == startButton) {
                 startButton.setText("RESTART");
+                speedButton.setVisible(true);
                 AiWar.restart();
                 AiWarCompOpponent.delay = 2000;
             } else if (source == speedButton) {
