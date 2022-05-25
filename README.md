@@ -1,8 +1,13 @@
 
 # Tic-Tac-Toe GUI
 
-GUI of a Tic-Tac-Toe game with an option of 2 droids playing with eachother.
-Optional background sounds and speeding up the "Droid Battle Mode"! :) I'll continue to polish the code, so it's still not 100% finished, although functional.
+GUI of a Tic-Tac-Toe game with an additional game mode.
+I'll continue to polish the code, so it's still not 100% finished, although functional.
+
+## Features
+
+- Background Sounds
+- Android vs Android battle
 
 ## Demo
 
