@@ -66,19 +66,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
         Object source = e.getSource();
 
         if (source == iMainMenu) {
-            AiWarCompOpponent.timer.stop();
-            MainPanel.player1Score = 0;
-            MainPanel.player2Score = 0;
-            MainPanel.scoreLabel.setText("Player " + MainPanel.player1Score + " - " + MainPanel.player2Score + " K2-SO");
-            MainPanel.textPane.setText("--- Tic-Tac-Toe ---\nYou know the rules!");
-            MainPanel.r5Label.setVisible(false);
-            MainPanel.gameModeButton.setText("AI Battle");
-            MainPanel.startButton.setText("ENGAGE");
-            MainPanel.messageLabel.setText(" ");
-            MainPanel.aiWar.setVisible(false);
-            MainPanel.speedButton.setVisible(false);
-            MainPanel.singlePlayerPanel.setVisible(false);
-            MainPanel.regularMode = true;
+            MainPanel.resetToMainMode();
         } else if (source == iExit) {
             System.exit(0);
         } else if (source == cbMusic) {

@@ -10,6 +10,7 @@ public class MainPanel extends JPanel implements ActionListener {
 
     final int PANEL_WIDTH = 1000;
     final int PANEL_HEIGHT = 650;
+    static String player1 = "Player ", player2 = " K2-SO";
     static int player1Score = 0, player2Score = 0;
 
     static JTextPane textPane;
@@ -20,7 +21,7 @@ public class MainPanel extends JPanel implements ActionListener {
 
     static boolean regularMode = true;
     static SinglePlayerPanel singlePlayerPanel;
-    static AiWar aiWar;
+    static AiWarPanel aiWar;
     ImageIcon k2so, r5;
 
     ImageIcon background;
@@ -62,7 +63,7 @@ public class MainPanel extends JPanel implements ActionListener {
         singlePlayerPanel.setVisible(false);
         singlePlayerPanel.setOpaque(false);
 
-        aiWar = new AiWar();
+        aiWar = new AiWarPanel();
         aiWar.setBounds(310, 150, 390, 300);
         aiWar.setFocusable(true);
         aiWar.setVisible(false);
@@ -78,7 +79,7 @@ public class MainPanel extends JPanel implements ActionListener {
         speedButton.addActionListener(this);
 
         scoreLabel = new JLabel();
-        scoreLabel.setText("Player " + player1Score + ":" + player2Score + " K2-SO");
+        scoreLabel.setText(player1 + player1Score + ":" + player2Score + player2);
         scoreLabel.paintImmediately(scoreLabel.getVisibleRect());
         scoreLabel.setFont(new Font("Consolas", Font.PLAIN, 16));
         scoreLabel.setForeground(Color.WHITE);
@@ -119,7 +120,8 @@ public class MainPanel extends JPanel implements ActionListener {
             if (source == gameModeButton) {
                 player1Score = 0;
                 player2Score = 0;
-                scoreLabel.setText("R5-J2 " + player1Score + ":" + player2Score + " K2-SO");
+                player1 = "R5-J2 ";
+                scoreLabel.setText(player1 + player1Score + ":" + player2Score + player2);
                 r5Label.setVisible(true);
                 gameModeButton.setText("vs Player");
                 startButton.setText("ENGAGE");
@@ -133,26 +135,45 @@ public class MainPanel extends JPanel implements ActionListener {
             }
         } else {
             if (source == gameModeButton) {
-                AiWarCompOpponent.timer.stop();
-                player1Score = 0;
-                player2Score = 0;
-                scoreLabel.setText("Player " + player1Score + ":" + player2Score + " K2-SO");
-                textPane.setText("--- Tic-Tac-Toe ---\nYou know the rules!");
-                r5Label.setVisible(false);
-                gameModeButton.setText("AI Battle");
-                startButton.setText("ENGAGE");
-                aiWar.setVisible(false);
-                speedButton.setVisible(false);
-                regularMode = true;
+                resetToMainMode();
+//                AiWarCompOpponent.timer.stop();
+//                player1Score = 0;
+//                player2Score = 0;
+//                scoreLabel.setText("Player " + player1Score + ":" + player2Score + " K2-SO");
+//                textPane.setText("--- Tic-Tac-Toe ---\nYou know the rules!");
+//                r5Label.setVisible(false);
+//                gameModeButton.setText("AI Battle");
+//                startButton.setText("ENGAGE");
+//                aiWar.setVisible(false);
+//                speedButton.setVisible(false);
+//                regularMode = true;
             } else if (source == startButton) {
                 startButton.setText("RESTART");
                 speedButton.setVisible(true);
-                AiWar.restart();
+                AiWarPanel.restart();
                 AiWarCompOpponent.delay = 2000;
             } else if (source == speedButton) {
                 AiWarCompOpponent.delay = AiWarCompOpponent.delay / 2;
             }
         }
 
+    }
+
+    public static void resetToMainMode() {
+        AiWarCompOpponent.timer.stop();
+        player1Score = 0;
+        player2Score = 0;
+        MainPanel.player1="Player ";
+        scoreLabel.setText(player1 + player1Score + ":" + player2Score + player2);
+        textPane.setText("--- Tic-Tac-Toe ---\nYou know the rules!");
+        r5Label.setVisible(false);
+        gameModeButton.setText("AI Battle");
+        startButton.setText("ENGAGE");
+        aiWar.setVisible(false);
+        speedButton.setVisible(false);
+        regularMode = true;
+        messageLabel.setText("Game on!");
+        singlePlayerPanel.setVisible(false);
+        AiWarPanel.disableIconsVisibility();
     }
 }
