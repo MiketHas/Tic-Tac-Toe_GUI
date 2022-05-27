@@ -105,20 +105,28 @@ public class AiWarPanel extends JPanel {
 
         if (xWins) { //True/False
             switch (whoGoesFirst) {
-                case 0 -> MainPanel.player1Score++;
-                case 1 -> MainPanel.player2Score++;
+                case 0 -> {
+                    player1Wins();
+                }
+                case 1 -> {
+                    player2Wins();
+                }
             }
-            MainPanel.messageLabel.setText("X wins");
-            MainPanel.scoreLabel.setText(MainPanel.player1 + MainPanel.player1Score + ":" + MainPanel.player2Score + MainPanel.player2);
+            //MainPanel.messageLabel.setText("X wins");
+            MainPanel.scoreLabel.setText(MainPanel.player1 + " " + MainPanel.player1Score + ":" + MainPanel.player2Score + " " + MainPanel.player2);
             disableAll();
             return true;
         } else if (oWins) { //True/False
             switch (whoGoesFirst) {
-                case 0 -> MainPanel.player2Score++;
-                case 1 -> MainPanel.player1Score++;
+                case 0 -> {
+                    player2Wins();
+                }
+                case 1 -> {
+                    player1Wins();
+                }
             }
-            MainPanel.messageLabel.setText("O wins");
-            MainPanel.scoreLabel.setText(MainPanel.player1 + MainPanel.player1Score + ":" + MainPanel.player2Score + MainPanel.player2);
+            //MainPanel.messageLabel.setText("O wins");
+            MainPanel.scoreLabel.setText(MainPanel.player1 + " " + MainPanel.player1Score + ":" + MainPanel.player2Score + " " + MainPanel.player2);
             disableAll();
             return true;
         } else if (emptySpaces == 0) {
@@ -164,6 +172,16 @@ public class AiWarPanel extends JPanel {
         bottLeftButton.setIcon(null);
         bottMidButton.setIcon(null);
         bottRightButton.setIcon(null);
+    }
+
+    public static void player1Wins() {
+        MainPanel.player1Score++;
+        MainPanel.messageLabel.setText(MainPanel.player1 + " wins");
+    }
+
+    public static void player2Wins() {
+        MainPanel.player2Score++;
+        MainPanel.messageLabel.setText(MainPanel.player2 + " wins");
     }
 
 }

@@ -131,15 +131,13 @@ public class SinglePlayerPanel extends JPanel implements MouseListener, ActionLi
         boolean oWins = isTheWinner(boardField, 'O');
 
         if (xWins) { //True/False
-            MainPanel.messageLabel.setText("X wins");
-            MainPanel.player1Score++;
-            MainPanel.scoreLabel.setText("Player " + MainPanel.player1Score + ":" + MainPanel.player2Score + " K2-SO");
+            player1Wins();
+            MainPanel.scoreLabel.setText(MainPanel.player1 + " " + MainPanel.player1Score + ":" + MainPanel.player2Score + " " + MainPanel.player2);
             disableAll();
             return true;
         } else if (oWins) { //True/False
-            MainPanel.messageLabel.setText("O wins");
-            MainPanel.player2Score++;
-            MainPanel.scoreLabel.setText("Player " + MainPanel.player1Score + ":" + MainPanel.player2Score + " K2-SO");
+            player2Wins();
+            MainPanel.scoreLabel.setText(MainPanel.player1 + " " + MainPanel.player1Score + ":" + MainPanel.player2Score + " " + MainPanel.player2);
             disableAll();
             return true;
         } else if (emptySpaces == 0) {
@@ -292,6 +290,16 @@ public class SinglePlayerPanel extends JPanel implements MouseListener, ActionLi
         if (!GameOver(boardArray)) {
             ComputerOpponent.start();
         }
+    }
+
+    public static void player1Wins() {
+        MainPanel.player1Score++;
+        MainPanel.messageLabel.setText(MainPanel.player1 + " wins");
+    }
+
+    public static void player2Wins() {
+        MainPanel.player2Score++;
+        MainPanel.messageLabel.setText(MainPanel.player2 + " wins");
     }
 
 }

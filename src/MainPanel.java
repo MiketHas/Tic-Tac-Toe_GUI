@@ -10,7 +10,7 @@ public class MainPanel extends JPanel implements ActionListener {
 
     final int PANEL_WIDTH = 1000;
     final int PANEL_HEIGHT = 650;
-    static String player1 = "PlayerTEST ", player2 = " K2-SO";
+    static String player1 = "Player", player2 = "K2-SO";
     static int player1Score = 0, player2Score = 0;
 
     static JTextPane textPane;
@@ -79,7 +79,7 @@ public class MainPanel extends JPanel implements ActionListener {
         speedButton.addActionListener(this);
 
         scoreLabel = new JLabel();
-        scoreLabel.setText(player1 + player1Score + ":" + player2Score + player2);
+        scoreLabel.setText(player1 + " " + player1Score + ":" + player2Score + " " + player2);
         scoreLabel.paintImmediately(scoreLabel.getVisibleRect());
         scoreLabel.setFont(new Font("Consolas", Font.PLAIN, 16));
         scoreLabel.setForeground(Color.WHITE);
@@ -120,8 +120,8 @@ public class MainPanel extends JPanel implements ActionListener {
             if (source == gameModeButton) {
                 player1Score = 0;
                 player2Score = 0;
-                player1 = "R5-J2 ";
-                scoreLabel.setText(player1 + player1Score + ":" + player2Score + player2);
+                player1 = "R5-J2";
+                scoreLabel.setText(player1 + " " + player1Score + ":" + player2Score + " " + player2);
                 r5Label.setVisible(true);
                 gameModeButton.setText("vs Player");
                 startButton.setText("ENGAGE");
@@ -163,8 +163,8 @@ public class MainPanel extends JPanel implements ActionListener {
         AiWarCompOpponent.timer.stop();
         player1Score = 0;
         player2Score = 0;
-        MainPanel.player1="Player ";
-        scoreLabel.setText(player1 + player1Score + ":" + player2Score + player2);
+        player1="Player";
+        scoreLabel.setText(player1 + " " + player1Score + ":" + player2Score + " " + player2);
         textPane.setText("--- Tic-Tac-Toe ---\nYou know the rules!");
         r5Label.setVisible(false);
         gameModeButton.setText("AI Battle");
