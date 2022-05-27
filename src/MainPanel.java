@@ -10,7 +10,7 @@ public class MainPanel extends JPanel implements ActionListener {
 
     final int PANEL_WIDTH = 1000;
     final int PANEL_HEIGHT = 650;
-    static String player1 = "Player ", player2 = " K2-SO";
+    static String player1 = "PlayerTEST ", player2 = " K2-SO";
     static int player1Score = 0, player2Score = 0;
 
     static JTextPane textPane;
