@@ -20,8 +20,8 @@ public class MainPanel extends JPanel implements ActionListener {
     static JLabel r5Label;
 
     static boolean regularMode = true;
-    static SinglePlayerPanel singlePlayerPanel;
-    static AiWarPanel aiWar;
+    static VsHumanPanel vsHumanPanel;
+    static VsRobotPanel vsRobotPanel;
     ImageIcon k2so, r5;
 
     ImageIcon background;
@@ -30,6 +30,8 @@ public class MainPanel extends JPanel implements ActionListener {
     public MainPanel() {
         this.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
         this.setLayout(null);
+
+        // background image
         background = new ImageIcon(getClass().getClassLoader().getResource("res/death_wall.jpg"));
         bcgImage = background.getImage();
 
@@ -57,17 +59,17 @@ public class MainPanel extends JPanel implements ActionListener {
         StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
         doc.setParagraphAttributes(0, doc.getLength(), center, false);
 
-        singlePlayerPanel = new SinglePlayerPanel();
-        singlePlayerPanel.setBounds(310, 150, 390, 300);
-        singlePlayerPanel.setFocusable(true);
-        singlePlayerPanel.setVisible(false);
-        singlePlayerPanel.setOpaque(false);
+        vsHumanPanel = new VsHumanPanel();
+        vsHumanPanel.setBounds(310, 150, 390, 300);
+        vsHumanPanel.setFocusable(true);
+        vsHumanPanel.setVisible(false);
+        vsHumanPanel.setOpaque(false);
 
-        aiWar = new AiWarPanel();
-        aiWar.setBounds(310, 150, 390, 300);
-        aiWar.setFocusable(true);
-        aiWar.setVisible(false);
-        aiWar.setOpaque(false);
+        vsRobotPanel = new VsRobotPanel();
+        vsRobotPanel.setBounds(310, 150, 390, 300);
+        vsRobotPanel.setFocusable(true);
+        vsRobotPanel.setVisible(false);
+        vsRobotPanel.setOpaque(false);
 
         startButton = new RegularButton("ENGAGE", 450, 550, 100, 30, true);
         startButton.addActionListener(this);
@@ -98,8 +100,8 @@ public class MainPanel extends JPanel implements ActionListener {
         this.add(messageLabel);
         this.add(scoreLabel);
         this.add(textPane);
-        this.add(singlePlayerPanel);
-        this.add(aiWar);
+        this.add(vsHumanPanel);
+        this.add(vsRobotPanel);
         this.add(startButton);
         this.add(gameModeButton);
         this.add(speedButton);
@@ -125,13 +127,13 @@ public class MainPanel extends JPanel implements ActionListener {
                 r5Label.setVisible(true);
                 gameModeButton.setText("vs Player");
                 startButton.setText("ENGAGE");
-                singlePlayerPanel.setVisible(false);
-                aiWar.setVisible(true);
+                vsHumanPanel.setVisible(false);
+                vsRobotPanel.setVisible(true);
                 regularMode = false;
             } else if (source == startButton) {
-                singlePlayerPanel.setVisible(true);
+                vsHumanPanel.setVisible(true);
                 startButton.setText("RESTART");
-                singlePlayerPanel.restart();
+                vsHumanPanel.restart();
             }
         } else {
             if (source == gameModeButton) {
@@ -150,17 +152,18 @@ public class MainPanel extends JPanel implements ActionListener {
             } else if (source == startButton) {
                 startButton.setText("RESTART");
                 speedButton.setVisible(true);
-                AiWarPanel.restart();
-                AiWarCompOpponent.delay = 2000;
+                VsRobotPanel.restart();
+                VsRobotOpponent.delay = 2000;
             } else if (source == speedButton) {
-                AiWarCompOpponent.delay = AiWarCompOpponent.delay / 2;
+                VsRobotOpponent.delay = VsRobotOpponent.delay / 2;
             }
         }
 
     }
 
     public static void resetToMainMode() {
-        AiWarCompOpponent.timer.stop();
+        VsRobotOpponent.timer.stop();
+        VsHumanPanel.restart();
         player1Score = 0;
         player2Score = 0;
         player1="Player";
@@ -169,11 +172,12 @@ public class MainPanel extends JPanel implements ActionListener {
         r5Label.setVisible(false);
         gameModeButton.setText("AI Battle");
         startButton.setText("ENGAGE");
-        aiWar.setVisible(false);
+        vsRobotPanel.setVisible(false);
         speedButton.setVisible(false);
         regularMode = true;
         messageLabel.setText("Game on!");
-        singlePlayerPanel.setVisible(false);
-        AiWarPanel.disableIconsVisibility();
+        vsHumanPanel.setVisible(false);
+        //CommonMethods.disableIconsVisibility();
+
     }
 }
